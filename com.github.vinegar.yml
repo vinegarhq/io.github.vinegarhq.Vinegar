@@ -59,13 +59,20 @@ modules:
     build-commands:
       - $GOROOT/bin/go build -ldflags="-s -w" -buildvcs=false -o vinegar
       - install -Dm755 vinegar /app/bin/vinegar
+
       - install -Dm644 desktop/app.desktop /app/share/applications/com.github.vinegar.app.desktop  
       - install -Dm644 desktop/player.desktop /app/share/applications/com.github.vinegar.roblox.player.desktop
       - install -Dm644 desktop/studio.desktop /app/share/applications/com.github.vinegar.roblox.studio.desktop
-        #      - install -Dm644 icons/64/player.png /usr/local/share/icons/hicolor/64x64/apps/vinegar-roblox-player.png
-        #      - install -Dm644 icons/128/player.png /usr/local/share/icons/hicolor/128x128/apps/vinegar-roblox-player.png
-        #      - install -Dm644 icons/64/studio.png /usr/local/share/icons/hicolor/64x64/apps/vinegar-roblox-studio.png
-        #      - install -Dm644 icons/128/studio.png /usr/local/share/icons/hicolor/128x128/apps/vinegar-roblox-studio.png
+      
+      - desktop-file-edit /app/share/applications/com.github.vinegar.app.desktop --set-icon="com.github.vinegar.roblox.player" 
+      - desktop-file-edit /app/share/applications/com.github.vinegar.player.desktop --set-icon="com.github.vinegar.roblox.player"
+      - desktop-file-edit /app/share/applications/com.github.vinegar.studio.desktop --set-icon="com.github.vinegar.roblox.studio"
+
+      - install -Dm644 icons/64/player.png /usr/local/share/icons/hicolor/64x64/apps/com.github.vinegar.roblox.player.png
+      - install -Dm644 icons/128/player.png /usr/local/share/icons/hicolor/128x128/apps/com.github.vinegar.roblox.player.png
+      - install -Dm644 icons/64/studio.png /usr/local/share/icons/hicolor/64x64/apps/com.github.vinegar.roblox.studio.png
+      - install -Dm644 icons/128/studio.png /usr/local/share/icons/hicolor/128x128/apps/com.github.vinegar.roblox.studio.png
+      
       - install -Dm644 com.github.vinegar.metainfo.xml -t /app/share/metainfo
     sources:
       - type: git
