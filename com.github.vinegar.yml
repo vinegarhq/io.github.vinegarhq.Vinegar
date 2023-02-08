@@ -15,13 +15,16 @@ finish-args:
   - --socket=x11 # Will be removed or replaced with fallback-x11 once Wine is improved
   - --share=ipc
   - --socket=wayland
-  # Original device setting before the controller problems were discovered
-  # Note: Having this setting disabled causes very rare issues as seen in the helpdesk
   #- --device=dri # Uncomment if --device=all is removed/commented to fix graphics issues
   - --allow=devel # Necessary for VMProtect to function.
   - --socket=pulseaudio
   - --allow=multiarch
   - --device=all # Necessary for controller support (important on Steam Deck)
+
+build-options:
+  env:
+    - GOBIN=/app/bin
+    - GOROOT=/usr/lib/sdk/golang
 
 add-extensions:
   org.freedesktop.Platform.Compat.i386:
@@ -54,26 +57,21 @@ modules:
   - name: vinegar
     buildsystem: simple
     build-commands:
-      - $GOROOT/bin/go -ldflags="-s -w" -buildvcs=false -o vinegar
-      - install -Dm755 vinegar /usr/local/bin/vinegar
-      - install -Dm644 desktop/app.desktop /usr/local/share/applications/vinegar-app.desktop  
-      - install -Dm644 desktop/player.desktop /usr/local/share/applications/vinegar-roblox-player.desktop
-      - install -Dm644 desktop/studio.desktop /usr/local/share/applications/vinegar-roblox-studio.desktop
-      - install -Dm644 icons/16/player.png /usr/local/share/icons/hicolor/16x16/apps/vinegar-roblox-player.png
-      - install -Dm644 icons/32/player.png /usr/local/share/icons/hicolor/32x32/apps/vinegar-roblox-player.png
-      - install -Dm644 icons/48/player.png /usr/local/share/icons/hicolor/48x48/apps/vinegar-roblox-player.png
-      - install -Dm644 icons/64/player.png /usr/local/share/icons/hicolor/64x64/apps/vinegar-roblox-player.png
-      - install -Dm644 icons/128/player.png /usr/local/share/icons/hicolor/128x128/apps/vinegar-roblox-player.png
-      - install -Dm644 icons/16/studio.png /usr/local/share/icons/hicolor/16x16/apps/vinegar-roblox-studio.png
-      - install -Dm644 icons/32/studio.png /usr/local/share/icons/hicolor/32x32/apps/vinegar-roblox-studio.png
-      - install -Dm644 icons/48/studio.png /usr/local/share/icons/hicolor/48x48/apps/vinegar-roblox-studio.png
-      - install -Dm644 icons/64/studio.png /usr/local/share/icons/hicolor/64x64/apps/vinegar-roblox-studio.png
-      - install -Dm644 icons/128/studio.png /usr/local/share/icons/hicolor/128x128/apps/vinegar-roblox-studio.png
-      - install -Dm644 com.github.vinegar -t /app/share/metainfo
+      - $GOROOT/bin/go build -ldflags="-s -w" -buildvcs=false -o vinegar
+      - install -Dm755 vinegar /app/bin/vinegar
+      - install -Dm644 desktop/app.desktop /app/share/applications/com.github.vinegar.app.desktop  
+      - install -Dm644 desktop/player.desktop /app/share/applications/com.github.vinegar.roblox.player.desktop
+      - install -Dm644 desktop/studio.desktop /app/share/applications/com.github.vinegar.roblox.studio.desktop
+        #      - install -Dm644 icons/64/player.png /usr/local/share/icons/hicolor/64x64/apps/vinegar-roblox-player.png
+        #      - install -Dm644 icons/128/player.png /usr/local/share/icons/hicolor/128x128/apps/vinegar-roblox-player.png
+        #      - install -Dm644 icons/64/studio.png /usr/local/share/icons/hicolor/64x64/apps/vinegar-roblox-studio.png
+        #      - install -Dm644 icons/128/studio.png /usr/local/share/icons/hicolor/128x128/apps/vinegar-roblox-studio.png
+      - install -Dm644 com.github.vinegar.metainfo.xml -t /app/share/metainfo
     sources:
       - type: git
-      - url: https://github.com/vinegar-dev/vinegar.git
-      - tag: v1.1.0
-      - commit: 5cf1f5d9cad37c92a08deacd224ea39b3e980295
+        url: https://github.com/vinegar-dev/vinegar.git
+        tag: v1.1.1
+        commit: af7f1de714c5a78111e78399604f51d9744375e7
+
       - type: file
         path: com.github.vinegar.metainfo.xml

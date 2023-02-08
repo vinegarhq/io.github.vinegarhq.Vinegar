@@ -5,5 +5,8 @@ install:
 run:
 	flatpak run com.github.vinegar
 clean:
-	flatpak remove com.github.vinegar --delete-data
+	rm -rf .flatpak-builder
 	rm -rf build-dir
+uninstall:
+	flatpak remove com.github.vinegar --delete-data
+.PHONY: build install run clean uninstall
