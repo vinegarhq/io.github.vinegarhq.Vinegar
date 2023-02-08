@@ -1,3 +1,5 @@
+# Modified from net.brinkervii.grapejuice, thanks!
+
 app-id: com.github.vinegar
 runtime: org.freedesktop.Platform
 runtime-version: '22.08'
@@ -52,7 +54,7 @@ modules:
   - name: vinegar
     buildsystem: simple
     build-commands:
-      - go build -ldflags="-s -w" -buildvcs=false -o vinegar
+      - $GOROOT/bin/go -ldflags="-s -w" -buildvcs=false -o vinegar
       - install -Dm755 vinegar /usr/local/bin/vinegar
       - install -Dm644 desktop/app.desktop /usr/local/share/applications/vinegar-app.desktop  
       - install -Dm644 desktop/player.desktop /usr/local/share/applications/vinegar-roblox-player.desktop
