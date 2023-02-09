@@ -1,6 +1,6 @@
-# Modified from net.brinkervii.grapejuice, thanks!
+# Modified from net.brinkervii.grapejuice
 
-app-id: com.github.vinegar
+app-id: com.github.Vinegar
 runtime: org.freedesktop.Platform
 runtime-version: '22.08'
 base: org.winehq.Wine
@@ -57,28 +57,12 @@ modules:
   - name: vinegar
     buildsystem: simple
     build-commands:
-      - $GOROOT/bin/go build -ldflags="-s -w" -buildvcs=false -o vinegar
-      - install -Dm755 vinegar /app/bin/vinegar
-
-      - install -Dm644 desktop/app.desktop /app/share/applications/com.github.vinegar.app.desktop  
-      - install -Dm644 desktop/player.desktop /app/share/applications/com.github.vinegar.roblox.player.desktop
-      - install -Dm644 desktop/studio.desktop /app/share/applications/com.github.vinegar.roblox.studio.desktop
-      
-      - desktop-file-edit /app/share/applications/com.github.vinegar.app.desktop --set-icon="com.github.vinegar.roblox.player" 
-      - desktop-file-edit /app/share/applications/com.github.vinegar.player.desktop --set-icon="com.github.vinegar.roblox.player"
-      - desktop-file-edit /app/share/applications/com.github.vinegar.studio.desktop --set-icon="com.github.vinegar.roblox.studio"
-
-      - install -Dm644 icons/64/player.png /usr/local/share/icons/hicolor/64x64/apps/com.github.vinegar.roblox.player.png
-      - install -Dm644 icons/128/player.png /usr/local/share/icons/hicolor/128x128/apps/com.github.vinegar.roblox.player.png
-      - install -Dm644 icons/64/studio.png /usr/local/share/icons/hicolor/64x64/apps/com.github.vinegar.roblox.studio.png
-      - install -Dm644 icons/128/studio.png /usr/local/share/icons/hicolor/128x128/apps/com.github.vinegar.roblox.studio.png
-      
+      - make install GO=$GOROOT/bin/go PREFIX=/app
       - install -Dm644 com.github.vinegar.metainfo.xml -t /app/share/metainfo
     sources:
       - type: git
         url: https://github.com/vinegar-dev/vinegar.git
-        tag: v1.1.1
-        commit: af7f1de714c5a78111e78399604f51d9744375e7
-
+          #tag: v1.1.2
+        commit: 14350ff7a7e9c3ba6cf926b01c06bf533dd76d41 
       - type: file
         path: com.github.vinegar.metainfo.xml
