@@ -1,6 +1,6 @@
 # Modified from net.brinkervii.grapejuice
 
-app-id: com.github.Vinegar
+app-id: io.github.vinegarhq.Vinegar
 runtime: org.freedesktop.Platform
 runtime-version: '22.08'
 base: org.winehq.Wine
@@ -58,11 +58,11 @@ modules:
     buildsystem: simple
     build-commands:
       - make install GO=$GOROOT/bin/go PREFIX=/app
-      - install -Dm644 com.github.vinegar.metainfo.xml -t /app/share/metainfo
+      - install -Dm644 io.github.vinegarhq.Vinegar.metainfo.xml -t /app/share/metainfo
     sources:
       - type: git
-        url: https://github.com/vinegar-dev/vinegar.git
+        url: https://github.com/vinegarhq/vinegar.git
           #tag: v1.1.2
         commit: 14350ff7a7e9c3ba6cf926b01c06bf533dd76d41 
       - type: file
-        path: com.github.vinegar.metainfo.xml
+        path: io.github.vinegarhq.Vinegar.metainfo.xml
