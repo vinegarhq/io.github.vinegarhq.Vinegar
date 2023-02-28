@@ -109,6 +109,8 @@ modules:
   - name: bundle-setup
     buildsystem: simple
     build-commands:
+      - mkdir /app/dlls/lib -p
+      - mkdir /app/dlls/lib32 -p
       - mkdir -p /app/lib32
       - mkdir -p /app/lib/i386-linux-gnu
       - install -Dm644 ld.so.conf -t /app/etc/
@@ -260,8 +262,8 @@ modules:
       - INSTALL_PROGRAM_FLAGS=-s
     sources: &wine-sources
       - type: archive
-        url: https://dl.winehq.org/wine/source/8.0/wine-8.0.tar.xz
-        sha256: 0272c20938f8721ae4510afaa8b36037457dd57661e4d664231079b9e91c792e
+        url: https://dl.winehq.org/wine/source/8.x/wine-8.2.tar.xz
+        sha256: deada37cf6d949a8af81b7fd46748ab23c612db1c6ec75e62688ac7d6c58493b
         x-addons-url: &wine-addons-url >-
           https://source.winehq.org/git/wine.git/blob_plain/refs/heads/stable:/dlls/appwiz.cpl/addons.c
         x-checker-data:
