@@ -1,4 +1,4 @@
-# Modified from net.brinkervii.grapejuice
+# Modified from net.brinkervii.grapejuice and org.winehq.Wine
 
 app-id: io.github.vinegarhq.Vinegar
 runtime: org.freedesktop.Platform
