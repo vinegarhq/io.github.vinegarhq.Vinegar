@@ -121,7 +121,7 @@ modules:
   - name: vinegar
     buildsystem: simple
     build-commands:
-      - make install GO=$GOROOT/bin/go PREFIX=/app GOFLAGS=-ldflags="-s -w" -buildvcs=false
+      - make install GO=$GOROOT/bin/go PREFIX=/app GOFLAGS="-ldflags="-s -w" -buildvcs=false"
       - install -Dm644 io.github.vinegarhq.Vinegar.metainfo.xml -t /app/share/metainfo
     sources:
       - type: git
