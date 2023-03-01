@@ -103,8 +103,7 @@ build-options:
     - PERL_MM_OPT=INSTALL_BASE=/app
     - GOBIN=/app/bin
     - GOROOT=/usr/lib/sdk/golang
-    # ENABLE THIS LINE ONLY IF TESTING IN FLATPAK
-    - GOFLAGS = -ldflags="-s -w" -buildvcs=false
+
 
 modules:
   - name: bundle-setup
@@ -122,7 +121,7 @@ modules:
   - name: vinegar
     buildsystem: simple
     build-commands:
-      - make install GO=$GOROOT/bin/go PREFIX=/app
+      - make install GO=$GOROOT/bin/go PREFIX=/app GOFLAGS=-ldflags="-s -w" -buildvcs=false
       - install -Dm644 io.github.vinegarhq.Vinegar.metainfo.xml -t /app/share/metainfo
     sources:
       - type: git
