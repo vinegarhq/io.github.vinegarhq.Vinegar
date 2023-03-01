@@ -103,7 +103,8 @@ build-options:
     - PERL_MM_OPT=INSTALL_BASE=/app
     - GOBIN=/app/bin
     - GOROOT=/usr/lib/sdk/golang
-
+    # ENABLE THIS LINE ONLY IF TESTING IN FLATPAK
+    - GOFLAGS = -ldflags="-s -w" -buildvcs=false
 
 modules:
   - name: bundle-setup
