@@ -3,8 +3,6 @@
 app-id: io.github.vinegarhq.Vinegar
 runtime: org.freedesktop.Platform
 runtime-version: '22.08'
-#base: org.winehq.Wine
-#base-version: stable-22.08
 x-gl-version: &gl-version '1.4'
 x-gl-versions: &gl-versions 22.08;1.4
 sdk: org.freedesktop.Sdk
@@ -28,7 +26,6 @@ finish-args:
   - --env=WINEDLLPATH=/app/dlls/lib32:/app/dlls/lib
   - --env=WINEPREFIX=/var/data/wine
   - --env=GST_PLUGIN_SYSTEM_PATH=/app/lib32/gstreamer-1.0:/app/lib/gstreamer-1.0:/usr/lib/i386-linux-gnu/gstreamer-1.0:/usr/lib/x86_64-linux-gnu/gstreamer-1.0
-
 
 add-extensions:
   org.freedesktop.Platform.Compat.i386:
@@ -61,9 +58,6 @@ add-extensions:
     version: stable-22.08
     versions: stable-22.08
 
-
-
-
 x-compat-i386-opts: &compat_i386_opts
   prepend-pkg-config-path: /app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig
   # Some autotools-based builds will fail if -L/app/lib32 isn't first
@@ -80,7 +74,6 @@ cleanup:
   - '*.a'
   - '*.la'
   - /share/man
-
   - /bin/function_grep.pl
   - /bin/widl
   - /bin/winecpp
@@ -103,7 +96,6 @@ build-options:
     - PERL_MM_OPT=INSTALL_BASE=/app
     - GOBIN=/app/bin
     - GOROOT=/usr/lib/sdk/golang
-
 
 modules:
   - name: bundle-setup
@@ -180,10 +172,6 @@ modules:
             x86_64: *compat_i386_opts
         cleanup: *eudev-cleanup
         sources: *eudev-sources
-
-
-
-
 
   - name: FAudio
     buildsystem: cmake-ninja
@@ -262,8 +250,8 @@ modules:
       - INSTALL_PROGRAM_FLAGS=-s
     sources: &wine-sources
       - type: archive
-        url: https://dl.winehq.org/wine/source/8.x/wine-8.2.tar.xz
-        sha256: deada37cf6d949a8af81b7fd46748ab23c612db1c6ec75e62688ac7d6c58493b
+        url: https://dl.winehq.org/wine/source/8.x/wine-8.3.tar.xz
+        sha256: 410269000292c3bfadd2561fdde06d9bcb2bc958b49b03e963f14177a27631f0
         x-addons-url: &wine-addons-url >-
           https://source.winehq.org/git/wine.git/blob_plain/refs/heads/stable:/dlls/appwiz.cpl/addons.c
         x-checker-data:
