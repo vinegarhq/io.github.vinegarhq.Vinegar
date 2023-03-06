@@ -1,6 +1,6 @@
 build:
-	flatpak-builder --force-clean build-dir io.github.vinegarhq.Vinegar.yml
-	flatpak-builder --user --install --force-clean build-dir io.github.vinegarhq.Vinegar.yml
+	flatpak-builder --ccache --force-clean build-dir io.github.vinegarhq.Vinegar.yml
+	flatpak-builder --force-clean --user --install build-dir io.github.vinegarhq.Vinegar.yml
 run:
 	flatpak run io.github.vinegarhq.Vinegar
 clean:
