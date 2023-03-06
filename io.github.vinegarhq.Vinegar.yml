@@ -42,11 +42,6 @@ add-extensions:
     merge-dirs: vulkan/icd.d;glvnd/egl_vendor.d;OpenCL/vendors;lib/dri;lib/d3d;vulkan/explicit_layer.d;vulkan/implicit_layer.d
     download-if: active-gl-driver
     enable-if: active-gl-driver
-  org.freedesktop.Platform.ffmpeg-full:
-    directory: lib/ffmpeg
-    add-ld-path: .
-    version: '22.08'
-    autodelete: false
   org.winehq.Wine.gecko:
     directory: share/wine/gecko
   org.winehq.Wine.mono:
@@ -86,8 +81,6 @@ cleanup:
   - /include/wine
   - /lib/wine/*.def
   - /lib32/wine/*.def
-cleanup-commands:
-  - mkdir -p ${FLATPAK_DEST}/lib{,32}/ffmpeg
 
 build-options:
   append-path: /usr/lib/sdk/mingw-w64/bin
