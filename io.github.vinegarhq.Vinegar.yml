@@ -46,12 +46,6 @@ add-extensions:
     directory: share/wine/gecko
   org.winehq.Wine.mono:
     directory: share/wine/mono
-  org.winehq.Wine.DLLs:
-    directory: dlls
-    subdirectories: true
-    merge-dirs: lib;lib32;
-    version: stable-22.08
-    versions: stable-22.08
 
 x-compat-i386-opts: &compat_i386_opts
   prepend-pkg-config-path: /app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig
