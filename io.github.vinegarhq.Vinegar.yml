@@ -100,7 +100,6 @@ modules:
   - name: vinegar
     buildsystem: simple
     build-commands:
-      - mkdir -p /app/share/applications
       - make install GO=$GOROOT/bin/go PREFIX=/app 
       - install -Dm644 io.github.vinegarhq.Vinegar.metainfo.xml -t /app/share/metainfo
     sources:
